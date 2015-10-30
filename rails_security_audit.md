@@ -13,11 +13,13 @@
 
 ### 1. Unencrypted data in transit
 > All sensitive data (e.g., login credentials, PII, corporate data) should be encrypted or hashed while in motion.
+
 * Provide a secure connection over SSL
 * Ensure `Rails config.force_ssl = true`
 
 ### 2. Cross-site scripting
 > XSS attack exploit 
+
 * Check for any `html.safe` or `raw` in the code and consider if  the application of this will allow users to inject any malicous script attack.
 * If use `html.safe` or `raw`, wrap them in Safe Buffer.
 ```ruby
