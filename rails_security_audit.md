@@ -23,7 +23,6 @@
 ```ruby
 # unsafe code
 "#{first_name} #{last_name} #{link_to(phone, 'tel:'+phone)}".html_safe
-
 # safe code
 "".html_safe + "#{first_name} #{last_name} " + link_to(phone, 'tel:'+phone)
 ```
