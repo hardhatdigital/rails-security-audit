@@ -53,9 +53,9 @@ name = params[:name]
 ### 4. Forceful browsing
 > Authorisation checks should be performed on the server to allow or restrict access to application data and functionality.
 
-* implement authorization with [Cancancan](https://github.com/CanCanCommunity/cancancan) / [Pundit](https://github.com/elabs/pundit), and have a test to ensure that only the content can only be accessed by the right user.
-* Query the user's access rights when querying for content
-* Avoid using params for render
+* Implement authorization with [Cancancan](https://github.com/CanCanCommunity/cancancan) / [Pundit](https://github.com/elabs/pundit), and test to ensure that each user type can only access the correct content.
+* Query the user's access rights when querying for content.
+* Avoid using user-supplied data (like `params`) to determine which page to render:
 ```ruby
 def show
   render params[:view]
