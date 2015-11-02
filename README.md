@@ -65,33 +65,33 @@ end
 ### 5. Parameter tampering
 > Users should not be given access to parameters which may affect application functionality such as access control and business logic.
 
-* Make non-action controller methods private
-* Avoid passing any params into `redirect_to`
-* Regular expressions - match the string's beginning and end by `\A` and `\z` instead of `^` and `$`
-* Use rails strong params
+* Make non-action controller methods private.
+* Avoid passing any params into `redirect_to`.
+* Regular expressions - match the string's beginning and end by `\A` and `\z` instead of `^` and `$`.
+* Use rails strong params.
 
 ### 6. Account & password management
-> Set of protocols or systems to protect user's credentials or session tokens throughout their lifecycle.
+> A set of protocols or systems to protect user's credentials or session tokens throughout their lifecycle.
 
 * Password encryption methods - ensuring they are strong and safe. Use [Devise security extension](https://github.com/phatworx/devise_security_extension) to help with this. 
-* Lock the account after x number of failed attempts
-* Put the admin interface to a special sub-domain
-* Implement captcha after a number of failed log-ins from a certain IP address
-* Require user to input the old password when changing their password
-* Enforce a strong password implementation
-* Avoid putting admin panel in easily guessable path
+* Lock the account after x number of failed attempts.
+* Put the admin interface to a special sub-domain.
+* Implement captcha after a number of failed log-ins from a certain IP address.
+* Require user to input the old password when changing their password.
+* Enforce a strong password implementation.
+* Avoid putting admin panel in easily guessable path.
 
 ### 7. Session & configuration management
 > Session or cookie management to prevent session hijacking or session fixation
 
-* Ensure [Devise/Warden](https://github.com/plataformatec/devise) is being used
-* Ensure that sensitive information eg: money balances, user access privilleges are not stored in session
-* Make log-out button prominent in the application
+* Ensure [Devise/Warden](https://github.com/plataformatec/devise) is being used.
+* Ensure that sensitive information eg: money balances, user access privilleges are not stored in session.
+* Make logout button prominent in the application.
 * Do not store large objects in a session. instead, store the id.
-* Use ActiveRecord store or Memcached store or Redis store instead of cookie store
-* Make session expire on the server after a limited period of time
-* Search the entire project for the `cookies` accessor and assign any sensitive cookies as httponly and also secure, eg: `cookies[:login] = {value: "user", httponly: true, secure: true}`
-* Not to store "state" in the session or a cookie, as they can be replayed / modified by attacker, otherwise, revalidate the value to ensure that it has not been modified by the user.
+* Use ActiveRecord store or Memcached store or Redis store instead of cookie store for sessions.
+* Make session expire on the server after a limited period of time (~20 minutes).
+* Search the entire project for the `cookies` accessor and set all cookies as httponly and secure, eg: `cookies[:login] = {value: "user", httponly: true, secure: true}`.
+* Do not store "state" in the session or a cookie, as they can be replayed / modified by attacker, otherwise, revalidate the value to ensure that it has not been modified by the user.
 
 ### 8. Unrestricted file upload
 > Filter / validate uploaded attachment that maybe a malicous file.
