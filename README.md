@@ -94,27 +94,28 @@ end
 * Do not store "state" in the session or a cookie, as they can be replayed / modified by attacker, otherwise, revalidate the value to ensure that it has not been modified by the user.
 
 ### 8. Unrestricted file upload
-> Filter / validate uploaded attachment that maybe a malicous file.
+> Filter / validate uploaded attachment that may be a malicious file.
 
-* Validate the content type and the file size of the attachment
-* place uploaded files in protected directories or another server / service
-* Filter or validate file names, eg: if a user enters "../../../etc/passwd"
-* Process file upload asynchronously to avoid vulnerability of denial-of-service attacks
-* Check that the requested file is in the expected directory
+* Validate the content type and the file size of the attachment.
+* place uploaded files in protected directories (or even another server).
+* Filter or validate file names, eg: if a user enters "../../../etc/passwd".
+* Process file upload asynchronously to avoid vulnerability of denial-of-service attacks.
+* Check that the requested file is in the expected directory.
 
 ### 9. Information leakage
-> Any potential that may leak information for attacker to exploit
+> Any potential to leak information for attacker to exploit.
 
-* Ensure generic error message is being used
-* Ensure no sensitive credentials are stored in source code or commited in any configuration file
-* Use `filter_parameter_logging` or `config.filter_parameters` (Rails 3) to remove sensitive data from your logs (:password, :password_confirmation, :credit_card_number etc.)
+* Ensure generic error message is being used.
+  * "Invalid details" is better than "Password does not match user account".
+* Ensure no sensitive credentials are stored in source code or any configuration file.
+* Use `filter_parameter_logging` or `config.filter_parameters` (Rails 3) to remove sensitive data from your logs (`:password`, `:password_confirmation`, `:credit_card_number`, etc).
 
 ### 10. Request replay
 > A mechanism to prevent automated submission of data. 
 
-* Enable `protect_from_forgery, with: :exception` to protect from CSRF attack
-* Implement captcha on publicly exposed form
-* Use [Negative Captcha](https://github.com/subwindow/negative-captcha)
+* Enable `protect_from_forgery, with: :exception` to protect from CSRF attack.
+* Implement CAPTCHA on publicly exposed forms.
+* Or use [Negative Captcha](https://github.com/subwindow/negative-captcha).
 
 #### Resources:
 * https://www.netsparker.com/blog/web-security/ruby-on-rails-security-basics/
