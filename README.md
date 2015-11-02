@@ -20,8 +20,8 @@
 ### 2. Cross-site scripting
 > XSS attack exploit 
 
-* Check for any `html.safe` or `raw` in the code and consider if  the application of this will allow users to inject any malicous script attack.
-* If use `html.safe` or `raw`, wrap them in Safe Buffer.
+* Check for any `html_safe` or `raw` in the code and consider if  the application of this will allow users to inject any malicous script attack.
+* If use `html_safe` or `raw`, wrap them in Safe Buffer.
 ```ruby
 # unsafe code
 "#{first_name} #{last_name} #{link_to(phone, 'tel:'+phone)}".html_safe
