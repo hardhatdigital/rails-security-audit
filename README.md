@@ -35,14 +35,14 @@
 * Don’t include user submitted strings in database queries! Check all model scopes and find conditions that include params or interpolated strings.
 ```ruby
 # unsafe code 1
-@projects = Project.find(:all, :conditions => “name like '%#{params[:name]}%'”)
+@projects = Project.find(:all, :conditions => "name like '%#{params[:name]}%'")
 
 # safe code 1
-@projects = Project.find(:all, :conditions => [ “name like ?”, "%#{params[:name]}%"] )
+@projects = Project.find(:all, :conditions => [ "name like ?", "%#{params[:name]}%"] )
 
 # unsafe code 2
 name = params[:name]
-@projects = Project.where(“name like ‘%“ + name + “%‘“);
+@projects = Project.where("name like '%" + name + "%'");
 
 # safe code 2
  @projects = Project.where("name like ?", "%#{params[:name]}%")
