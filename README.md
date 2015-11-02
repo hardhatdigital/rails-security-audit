@@ -14,13 +14,13 @@
 ### 1. Unencrypted data in transit
 > All sensitive data (e.g., login credentials, PII, corporate data) should be encrypted or hashed while in motion.
 
-* Provide a secure connection over SSL
-* Ensure `Rails config.force_ssl = true`
+* Provide a secure connection over SSL.
+* Ensure `Rails config.force_ssl = true`.
 
 ### 2. Cross-site scripting
-> XSS attack exploit 
+> Be sure to always prevent XSS attack exploits.
 
-* Check for any `html_safe` or `raw` in the code and consider if  the application of this will allow users to inject any malicous script attack.
+* Check for any `html_safe` or `raw` in the code and consider if  the application of this will allow users to inject any malicous scripts.
 * If use `html_safe` or `raw`, wrap them in Safe Buffer.
 ```ruby
 # unsafe code
@@ -38,7 +38,7 @@
 @projects = Project.find(:all, :conditions => "name like '%#{params[:name]}%'")
 
 # safe code 1
-@projects = Project.find(:all, :conditions => [ "name like ?", "%#{params[:name]}%"] )
+@projects = Project.find(:all, :conditions => ["name like ?", "%#{params[:name]}%"] )
 
 # unsafe code 2
 name = params[:name]
@@ -54,9 +54,10 @@ name = params[:name]
 > Authorisation checks should be performed on the server to allow or restrict access to application data and functionality.
 
 * Implement authorization with [Cancancan](https://github.com/CanCanCommunity/cancancan) / [Pundit](https://github.com/elabs/pundit), and test to ensure that each user type can only access the correct content.
-* Query the user's access rights when querying for content.
+* Check the user's access rights when querying for content.
 * Avoid using user-supplied data (like `params`) to determine which page to render:
 ```ruby
+# This is bad!
 def show
   render params[:view]
 end
